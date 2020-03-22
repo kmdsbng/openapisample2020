@@ -1,13 +1,22 @@
 
 
-OpenAPI Generator generators list
+# Stoplight Studio
+https://stoplight.io/studio/
+
+* OpenAPI のyamlファイルエディタ
+* インストールして使うことも、オンラインで使うこともできる
+* yamlをテキスト編集しなくて良くなる。Swagger Editorよりだいぶ使いやすい。(意味不明なエラーに悩まされずに済む)
+
+
+
+# OpenAPI Generator generators list
 https://openapi-generator.tech/docs/generators
 
-# Generate code
+## Generate code
 sh generate_*_code.sh
 
 
-# Run kotlin server
+## Run kotlin server (ktor)
 cd out/kotlin
 ./gradlew build run
 

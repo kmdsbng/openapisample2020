@@ -7,20 +7,26 @@ https://stoplight.io/studio/
 * インストールして使うことも、オンラインで使うこともできる
 * yamlをテキスト編集しなくて良くなる。Swagger Editorよりだいぶ使いやすい。(意味不明なエラーに悩まされずに済む)
 
+# Start mock server (prism)
+sh start_prism.sh
+
+### mock server の結果を取得
+curl -s -D /dev/stderr -X GET -H "Accept:application/json" http://localhost:4010/pet/0001 | json_pp
 
 
 # OpenAPI Generator generators list
 https://openapi-generator.tech/docs/generators
 
-## Generate code
+# Generate code
 sh generate_*_code.sh
 
 
-## Run kotlin server (ktor)
+# Run kotlin server (ktor)
 cd out/kotlin
 ./gradlew build run
 
 (ブラウザでhttp:/localhost:8080/user/loginにアクセス)
+
 
 
 # 参考

@@ -79,15 +79,6 @@ export class PetApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
-        if (this.configuration && this.configuration.accessToken) {
-            // oauth required
-            if (typeof this.configuration.accessToken === 'function') {
-                headerParameters["Authorization"] = this.configuration.accessToken("petstore_auth", ["write:pets", "read:pets"]);
-            } else {
-                headerParameters["Authorization"] = this.configuration.accessToken;
-            }
-        }
-
         const response = await this.request({
             path: `/pet`,
             method: 'POST',
@@ -120,15 +111,6 @@ export class PetApi extends runtime.BaseAPI {
 
         if (requestParameters.apiKey !== undefined && requestParameters.apiKey !== null) {
             headerParameters['api_key'] = String(requestParameters.apiKey);
-        }
-
-        if (this.configuration && this.configuration.accessToken) {
-            // oauth required
-            if (typeof this.configuration.accessToken === 'function') {
-                headerParameters["Authorization"] = this.configuration.accessToken("petstore_auth", ["write:pets", "read:pets"]);
-            } else {
-                headerParameters["Authorization"] = this.configuration.accessToken;
-            }
         }
 
         const response = await this.request({
@@ -165,15 +147,6 @@ export class PetApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        if (this.configuration && this.configuration.accessToken) {
-            // oauth required
-            if (typeof this.configuration.accessToken === 'function') {
-                headerParameters["Authorization"] = this.configuration.accessToken("petstore_auth", ["write:pets", "read:pets"]);
-            } else {
-                headerParameters["Authorization"] = this.configuration.accessToken;
-            }
-        }
-
         const response = await this.request({
             path: `/pet/findByStatus`,
             method: 'GET',
@@ -206,15 +179,6 @@ export class PetApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        if (this.configuration && this.configuration.accessToken) {
-            // oauth required
-            if (typeof this.configuration.accessToken === 'function') {
-                headerParameters["Authorization"] = this.configuration.accessToken("petstore_auth", ["write:pets", "read:pets"]);
-            } else {
-                headerParameters["Authorization"] = this.configuration.accessToken;
-            }
-        }
-
         const response = await this.request({
             path: `/pet/findByTags`,
             method: 'GET',
@@ -246,10 +210,6 @@ export class PetApi extends runtime.BaseAPI {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["api_key"] = this.configuration.apiKey("api_key"); // api_key authentication
-        }
 
         const response = await this.request({
             path: `/pet/{petId}`.replace(`{${"petId"}}`, encodeURIComponent(String(requestParameters.petId))),
@@ -284,15 +244,6 @@ export class PetApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
-        if (this.configuration && this.configuration.accessToken) {
-            // oauth required
-            if (typeof this.configuration.accessToken === 'function') {
-                headerParameters["Authorization"] = this.configuration.accessToken("petstore_auth", ["write:pets", "read:pets"]);
-            } else {
-                headerParameters["Authorization"] = this.configuration.accessToken;
-            }
-        }
-
         const response = await this.request({
             path: `/pet`,
             method: 'PUT',
@@ -322,15 +273,6 @@ export class PetApi extends runtime.BaseAPI {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            // oauth required
-            if (typeof this.configuration.accessToken === 'function') {
-                headerParameters["Authorization"] = this.configuration.accessToken("petstore_auth", ["write:pets", "read:pets"]);
-            } else {
-                headerParameters["Authorization"] = this.configuration.accessToken;
-            }
-        }
 
         const consumes: runtime.Consume[] = [
             { contentType: 'application/x-www-form-urlencoded' },
@@ -383,15 +325,6 @@ export class PetApi extends runtime.BaseAPI {
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            // oauth required
-            if (typeof this.configuration.accessToken === 'function') {
-                headerParameters["Authorization"] = this.configuration.accessToken("petstore_auth", ["write:pets", "read:pets"]);
-            } else {
-                headerParameters["Authorization"] = this.configuration.accessToken;
-            }
-        }
 
         const consumes: runtime.Consume[] = [
             { contentType: 'multipart/form-data' },

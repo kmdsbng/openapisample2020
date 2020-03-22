@@ -6,7 +6,9 @@ info:
   license:
     name: Apache-2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
-host: petstore.swagger.io
+  contact:
+    name: kameda@mmj.ne.jp
+host: mypetstore.com
 basePath: /v2
 tags:
   - name: pet
@@ -41,10 +43,7 @@ paths:
       responses:
         '405':
           description: Invalid input
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+      security: []
     put:
       tags:
         - pet
@@ -71,10 +70,7 @@ paths:
           description: Pet not found
         '405':
           description: Validation exception
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+      security: []
   /pet/findByStatus:
     get:
       tags:
@@ -108,10 +104,7 @@ paths:
               $ref: '#/definitions/Pet'
         '400':
           description: Invalid status value
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+      security: []
   /pet/findByTags:
     get:
       tags:
@@ -126,11 +119,12 @@ paths:
         - name: tags
           in: query
           description: Tags to filter by
-          required: true
           type: array
           items:
             type: string
           collectionFormat: csv
+          maxItems: 5
+          uniqueItems: true
       responses:
         '200':
           description: successful operation
@@ -140,10 +134,7 @@ paths:
               $ref: '#/definitions/Pet'
         '400':
           description: Invalid tag value
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+      security: []
       deprecated: true
   '/pet/{petId}':
     get:
@@ -171,8 +162,7 @@ paths:
           description: Invalid ID supplied
         '404':
           description: Pet not found
-      security:
-        - api_key: []
+      security: []
     post:
       tags:
         - pet
@@ -204,10 +194,7 @@ paths:
       responses:
         '405':
           description: Invalid input
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+      security: []
     delete:
       tags:
         - pet
@@ -231,10 +218,7 @@ paths:
       responses:
         '400':
           description: Invalid pet value
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+      security: []
   '/pet/{petId}/uploadImage':
     post:
       tags:
@@ -268,10 +252,7 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/ApiResponse'
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+      security: []
   /store/inventory:
     get:
       tags:
@@ -290,8 +271,7 @@ paths:
             additionalProperties:
               type: integer
               format: int32
-      security:
-        - api_key: []
+      security: []
   /store/order:
     post:
       tags:
@@ -442,7 +422,6 @@ paths:
         - name: username
           in: query
           description: The user name for login
-          required: true
           type: string
         - name: password
           in: query
@@ -492,7 +471,7 @@ paths:
       parameters:
         - name: username
           in: path
-          description: 'The name that needs to be fetched. Use user1 for testing.'
+          description: The name that needs to be fetched. Use user1 for testing.
           required: true
           type: string
       responses:
@@ -535,7 +514,7 @@ paths:
         - user
       summary: Delete user
       description: This can only be done by the logged in user.
-      operationId: deleteUser
+      operationId: ''
       produces:
         - application/xml
         - application/json
@@ -550,18 +529,25 @@ paths:
           description: Invalid username supplied
         '404':
           description: User not found
-securityDefinitions:
-  petstore_auth:
-    type: oauth2
-    authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
-    flow: implicit
-    scopes:
-      'write:pets': modify pets in your account
-      'read:pets': read your pets
-  api_key:
-    type: apiKey
-    name: api_key
-    in: header
+  /store/orders:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              type: string
+          examples: {}
+        '404':
+          description: Not Found
+          schema:
+            type: object
+            properties: {}
+      operationId: get-store-orders
+securityDefinitions: {}
 definitions:
   Order:
     title: Pet Order

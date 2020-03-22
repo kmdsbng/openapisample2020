@@ -77,10 +77,6 @@ export class StoreApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["api_key"] = this.configuration.apiKey("api_key"); // api_key authentication
-        }
-
         const response = await this.request({
             path: `/store/inventory`,
             method: 'GET',

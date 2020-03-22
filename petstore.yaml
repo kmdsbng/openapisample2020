@@ -125,6 +125,8 @@ paths:
           collectionFormat: csv
           maxItems: 5
           uniqueItems: true
+          required: true
+          minItems: 2
       responses:
         '200':
           description: successful operation

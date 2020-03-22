@@ -44,10 +44,10 @@ object Paths {
     /**
      * Finds Pets by tags
      * Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
-     * @param tags Tags to filter by (optional)
+     * @param tags Tags to filter by 
      */
     @KtorExperimentalLocationsAPI
-    @Location("/pet/findByTags") class findPetsByTags(val tags: kotlin.collections.Set<kotlin.String>? = null)
+    @Location("/pet/findByTags") class findPetsByTags(val tags: kotlin.collections.Set<kotlin.String>)
 
     /**
      * Find pet by ID

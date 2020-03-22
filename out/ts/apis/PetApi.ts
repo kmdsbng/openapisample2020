@@ -37,7 +37,7 @@ export interface FindPetsByStatusRequest {
 }
 
 export interface FindPetsByTagsRequest {
-    tags?: Array<string>;
+    tags: Array<string>;
 }
 
 export interface GetPetByIdRequest {
@@ -171,6 +171,10 @@ export class PetApi extends runtime.BaseAPI {
      * Finds Pets by tags
      */
     async findPetsByTagsRaw(requestParameters: FindPetsByTagsRequest): Promise<runtime.ApiResponse<Array<Pet>>> {
+        if (requestParameters.tags === null || requestParameters.tags === undefined) {
+            throw new runtime.RequiredError('tags','Required parameter requestParameters.tags was null or undefined when calling findPetsByTags.');
+        }
+
         const queryParameters: runtime.HTTPQuery = {};
 
         if (requestParameters.tags) {

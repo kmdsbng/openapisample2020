@@ -26,6 +26,7 @@ export interface DeleteOrderRequest {
 
 export interface GetOrderByIdRequest {
     orderId: number;
+    orderId2: number;
 }
 
 export interface PlaceOrderRequest {
@@ -105,7 +106,15 @@ export class StoreApi extends runtime.BaseAPI {
             throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getOrderById.');
         }
 
+        if (requestParameters.orderId2 === null || requestParameters.orderId2 === undefined) {
+            throw new runtime.RequiredError('orderId2','Required parameter requestParameters.orderId2 was null or undefined when calling getOrderById.');
+        }
+
         const queryParameters: runtime.HTTPQuery = {};
+
+        if (requestParameters.orderId2 !== undefined) {
+            queryParameters['orderId'] = requestParameters.orderId2;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 

@@ -16,6 +16,15 @@ import io.ktor.locations.Location
 
 object Paths {
     /**
+     * Your GET endpoint
+     * 
+     * @param orderIds  
+     * @param hoge  
+     */
+    @KtorExperimentalLocationsAPI
+    @Location("/store/orders/{orderIds}/{hoge}") class getOrders(val orderIds: kotlin.Int, val hoge: kotlin.String)
+
+    /**
      * Deletes a pet
      * 
      * @param petId Pet id to delete 
@@ -35,10 +44,10 @@ object Paths {
     /**
      * Finds Pets by tags
      * Multiple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.
-     * @param tags Tags to filter by 
+     * @param tags Tags to filter by (optional)
      */
     @KtorExperimentalLocationsAPI
-    @Location("/pet/findByTags") class findPetsByTags(val tags: kotlin.Array<kotlin.String>)
+    @Location("/pet/findByTags") class findPetsByTags(val tags: kotlin.collections.Set<kotlin.String>? = null)
 
     /**
      * Find pet by ID
@@ -67,17 +76,10 @@ object Paths {
      * Find purchase order by ID
      * For valid response try integer IDs with value &lt;&#x3D; 5 or &gt; 10. Other values will generated exceptions
      * @param orderId ID of pet that needs to be fetched 
+     * @param orderId2  
      */
     @KtorExperimentalLocationsAPI
-    @Location("/store/order/{orderId}") class getOrderById(val orderId: kotlin.Long)
-
-    /**
-     * Delete user
-     * This can only be done by the logged in user.
-     * @param username The name that needs to be deleted 
-     */
-    @KtorExperimentalLocationsAPI
-    @Location("/user/{username}") class deleteUser(val username: kotlin.String)
+    @Location("/store/order/{orderId}") class getOrderById(val orderId: kotlin.Long, val orderId2: kotlin.Int)
 
     /**
      * Get user by user name
@@ -90,11 +92,11 @@ object Paths {
     /**
      * Logs user into the system
      * 
-     * @param username The user name for login 
      * @param password The password for login in clear text 
+     * @param username The user name for login (optional)
      */
     @KtorExperimentalLocationsAPI
-    @Location("/user/login") class loginUser(val username: kotlin.String, val password: kotlin.String)
+    @Location("/user/login") class loginUser(val password: kotlin.String, val username: kotlin.String? = null)
 
     /**
      * Logs out current logged in user session
@@ -102,5 +104,13 @@ object Paths {
      */
     @KtorExperimentalLocationsAPI
     @Location("/user/logout") class logoutUser()
+
+    /**
+     * Delete user
+     * This can only be done by the logged in user.
+     * @param username The name that needs to be deleted 
+     */
+    @KtorExperimentalLocationsAPI
+    @Location("/user/{username}") class userUsernameDelete(val username: kotlin.String)
 
 }

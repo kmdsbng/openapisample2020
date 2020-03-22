@@ -57,15 +57,6 @@ internal fun ApplicationCompressionConfiguration(): Compression.Configuration.()
 // Defines authentication mechanisms used throughout the application.
 @KtorExperimentalAPI
 val ApplicationAuthProviders: Map<String, OAuthServerSettings> = listOf<OAuthServerSettings>(
-        OAuthServerSettings.OAuth2ServerSettings(
-            name = "petstore_auth",
-            authorizeUrl = "http://petstore.swagger.io/api/oauth/dialog",
-            accessTokenUrl = "",
-            requestMethod = HttpMethod.Get,
-            clientId = settings.property("auth.oauth.petstore_auth.clientId").getString(),
-            clientSecret = settings.property("auth.oauth.petstore_auth.clientSecret").getString(),
-            defaultScopes = listOf("write:pets", "read:pets")
-        )
 //        OAuthServerSettings.OAuth2ServerSettings(
 //                name = "facebook",
 //                authorizeUrl = "https://graph.facebook.com/oauth/authorize",

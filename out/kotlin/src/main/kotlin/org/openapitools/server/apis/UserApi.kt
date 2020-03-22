@@ -62,11 +62,6 @@ fun Route.UserApi() {
     }
 
 
-    delete<Paths.deleteUser> {  _: Paths.deleteUser ->
-        call.respond(HttpStatusCode.NotImplemented)
-    }
-
-
     get<Paths.getUserByName> {  _: Paths.getUserByName ->
         val exampleContentType = "application/json"
         val exampleContentString = """{
@@ -102,6 +97,11 @@ fun Route.UserApi() {
         put {
             call.respond(HttpStatusCode.NotImplemented)
         }
+    }
+
+
+    delete<Paths.userUsernameDelete> {  _: Paths.userUsernameDelete ->
+        call.respond(HttpStatusCode.NotImplemented)
     }
 
 }

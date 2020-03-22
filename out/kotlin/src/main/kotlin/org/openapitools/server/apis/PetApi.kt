@@ -43,122 +43,122 @@ fun Route.PetApi() {
     val empty = mutableMapOf<String, Any?>()
 
     route("/pet") {
-            authenticate("petstore_auth") {
         post {
-            val principal = call.authentication.principal<OAuthAccessTokenResponse>()
-            
-            if (principal == null) {
-                call.respond(HttpStatusCode.Unauthorized)
-            } else {
-                call.respond(HttpStatusCode.NotImplemented)
-            }
-        }
-            }
-    }
-
-
-    delete<Paths.deletePet> {  _: Paths.deletePet ->
-        val principal = call.authentication.principal<OAuthAccessTokenResponse>()
-        
-        if (principal == null) {
-            call.respond(HttpStatusCode.Unauthorized)
-        } else {
             call.respond(HttpStatusCode.NotImplemented)
         }
     }
 
 
+    delete<Paths.deletePet> {  _: Paths.deletePet ->
+        call.respond(HttpStatusCode.NotImplemented)
+    }
+
+
     get<Paths.findPetsByStatus> {  _: Paths.findPetsByStatus ->
-        val principal = call.authentication.principal<OAuthAccessTokenResponse>()
+        val exampleContentType = "application/json"
+        val exampleContentString = """{
+          "photoUrls" : [ "photoUrls", "photoUrls" ],
+          "name" : "doggie",
+          "id" : 0,
+          "category" : {
+            "name" : "name",
+            "id" : 6
+          },
+          "tags" : [ {
+            "name" : "name",
+            "id" : 1
+          }, {
+            "name" : "name",
+            "id" : 1
+          } ],
+          "status" : "available"
+        }"""
         
-        if (principal == null) {
-            call.respond(HttpStatusCode.Unauthorized)
-        } else {
-            val exampleContentType = "application/json"
-            val exampleContentString = """{
-              "photoUrls" : [ "photoUrls", "photoUrls" ],
-              "name" : "doggie",
-              "id" : 0,
-              "category" : {
-                "name" : "name",
-                "id" : 6
-              },
-              "tags" : [ {
-                "name" : "name",
-                "id" : 1
-              }, {
-                "name" : "name",
-                "id" : 1
-              } ],
-              "status" : "available"
-            }"""
-            
-            when(exampleContentType) {
-                "application/json" -> call.respond(gson.fromJson(exampleContentString, empty::class.java))
-                "application/xml" -> call.respondText(exampleContentString, ContentType.Text.Xml)
-                else -> call.respondText(exampleContentString)
-            }
+        when(exampleContentType) {
+            "application/json" -> call.respond(gson.fromJson(exampleContentString, empty::class.java))
+            "application/xml" -> call.respondText(exampleContentString, ContentType.Text.Xml)
+            else -> call.respondText(exampleContentString)
         }
     }
 
 
     get<Paths.findPetsByTags> {  _: Paths.findPetsByTags ->
-        val principal = call.authentication.principal<OAuthAccessTokenResponse>()
+        val exampleContentType = "application/json"
+        val exampleContentString = """{
+          "photoUrls" : [ "photoUrls", "photoUrls" ],
+          "name" : "doggie",
+          "id" : 0,
+          "category" : {
+            "name" : "name",
+            "id" : 6
+          },
+          "tags" : [ {
+            "name" : "name",
+            "id" : 1
+          }, {
+            "name" : "name",
+            "id" : 1
+          } ],
+          "status" : "available"
+        }"""
         
-        if (principal == null) {
-            call.respond(HttpStatusCode.Unauthorized)
-        } else {
-            val exampleContentType = "application/json"
-            val exampleContentString = """{
-              "photoUrls" : [ "photoUrls", "photoUrls" ],
-              "name" : "doggie",
-              "id" : 0,
-              "category" : {
-                "name" : "name",
-                "id" : 6
-              },
-              "tags" : [ {
-                "name" : "name",
-                "id" : 1
-              }, {
-                "name" : "name",
-                "id" : 1
-              } ],
-              "status" : "available"
-            }"""
-            
-            when(exampleContentType) {
-                "application/json" -> call.respond(gson.fromJson(exampleContentString, empty::class.java))
-                "application/xml" -> call.respondText(exampleContentString, ContentType.Text.Xml)
-                else -> call.respondText(exampleContentString)
-            }
+        when(exampleContentType) {
+            "application/json" -> call.respond(gson.fromJson(exampleContentString, empty::class.java))
+            "application/xml" -> call.respondText(exampleContentString, ContentType.Text.Xml)
+            else -> call.respondText(exampleContentString)
         }
     }
 
 
     get<Paths.getPetById> {  _: Paths.getPetById ->
-        val principal = call.authentication.principal<ApiPrincipal>()
+        val exampleContentType = "application/json"
+        val exampleContentString = """{
+          "photoUrls" : [ "photoUrls", "photoUrls" ],
+          "name" : "doggie",
+          "id" : 0,
+          "category" : {
+            "name" : "name",
+            "id" : 6
+          },
+          "tags" : [ {
+            "name" : "name",
+            "id" : 1
+          }, {
+            "name" : "name",
+            "id" : 1
+          } ],
+          "status" : "available"
+        }"""
         
-        if (principal == null) {
-            call.respond(HttpStatusCode.Unauthorized)
-        } else {
+        when(exampleContentType) {
+            "application/json" -> call.respond(gson.fromJson(exampleContentString, empty::class.java))
+            "application/xml" -> call.respondText(exampleContentString, ContentType.Text.Xml)
+            else -> call.respondText(exampleContentString)
+        }
+    }
+
+
+    route("/pet") {
+        put {
+            call.respond(HttpStatusCode.NotImplemented)
+        }
+    }
+
+
+    route("/pet/{petId}") {
+        post {
+            call.respond(HttpStatusCode.NotImplemented)
+        }
+    }
+
+
+    route("/pet/{petId}/uploadImage") {
+        post {
             val exampleContentType = "application/json"
             val exampleContentString = """{
-              "photoUrls" : [ "photoUrls", "photoUrls" ],
-              "name" : "doggie",
-              "id" : 0,
-              "category" : {
-                "name" : "name",
-                "id" : 6
-              },
-              "tags" : [ {
-                "name" : "name",
-                "id" : 1
-              }, {
-                "name" : "name",
-                "id" : 1
-              } ],
-              "status" : "available"
+              "code" : 0,
+              "type" : "type",
+              "message" : "message"
             }"""
             
             when(exampleContentType) {
@@ -167,62 +167,6 @@ fun Route.PetApi() {
                 else -> call.respondText(exampleContentString)
             }
         }
-    }
-
-
-    route("/pet") {
-            authenticate("petstore_auth") {
-        put {
-            val principal = call.authentication.principal<OAuthAccessTokenResponse>()
-            
-            if (principal == null) {
-                call.respond(HttpStatusCode.Unauthorized)
-            } else {
-                call.respond(HttpStatusCode.NotImplemented)
-            }
-        }
-            }
-    }
-
-
-    route("/pet/{petId}") {
-            authenticate("petstore_auth") {
-        post {
-            val principal = call.authentication.principal<OAuthAccessTokenResponse>()
-            
-            if (principal == null) {
-                call.respond(HttpStatusCode.Unauthorized)
-            } else {
-                call.respond(HttpStatusCode.NotImplemented)
-            }
-        }
-            }
-    }
-
-
-    route("/pet/{petId}/uploadImage") {
-            authenticate("petstore_auth") {
-        post {
-            val principal = call.authentication.principal<OAuthAccessTokenResponse>()
-            
-            if (principal == null) {
-                call.respond(HttpStatusCode.Unauthorized)
-            } else {
-                val exampleContentType = "application/json"
-                val exampleContentString = """{
-                  "code" : 0,
-                  "type" : "type",
-                  "message" : "message"
-                }"""
-                
-                when(exampleContentType) {
-                    "application/json" -> call.respond(gson.fromJson(exampleContentString, empty::class.java))
-                    "application/xml" -> call.respondText(exampleContentString, ContentType.Text.Xml)
-                    else -> call.respondText(exampleContentString)
-                }
-            }
-        }
-            }
     }
 
 }

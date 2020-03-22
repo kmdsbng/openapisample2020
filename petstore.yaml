@@ -315,6 +315,10 @@ paths:
           maximum: 5
           minimum: 1
           format: int64
+        - type: integer
+          in: query
+          name: orderId
+          required: true
       responses:
         '200':
           description: successful operation
@@ -344,6 +348,11 @@ paths:
           description: Invalid ID supplied
         '404':
           description: Order not found
+    parameters:
+      - type: integer
+        name: orderId
+        in: path
+        required: true
   /user:
     post:
       tags:
@@ -529,7 +538,7 @@ paths:
           description: Invalid username supplied
         '404':
           description: User not found
-  /store/orders:
+  '/store/orders/{orderIds}/{hoge}':
     get:
       summary: Your GET endpoint
       tags: []
@@ -547,6 +556,15 @@ paths:
             type: object
             properties: {}
       operationId: getOrders
+    parameters:
+      - type: integer
+        name: orderIds
+        in: path
+        required: true
+      - type: string
+        name: hoge
+        in: path
+        required: true
 securityDefinitions: {}
 definitions:
   Order:

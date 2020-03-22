@@ -34,59 +34,20 @@ import org.openapitools.server.Paths
 import org.openapitools.server.infrastructure.ApiPrincipal
 
 
-import org.openapitools.server.models.Order
 
 @KtorExperimentalLocationsAPI
-fun Route.StoreApi() {
+fun Route.DefaultApi() {
     val gson = Gson()
     val empty = mutableMapOf<String, Any?>()
 
-    delete<Paths.deleteOrder> {  _: Paths.deleteOrder ->
-        call.respond(HttpStatusCode.NotImplemented)
-    }
-
-
-    get<Paths.getInventory> {  _: Paths.getInventory ->
-        call.respond(HttpStatusCode.NotImplemented)
-    }
-
-
-    get<Paths.getOrderById> {  _: Paths.getOrderById ->
-        val exampleContentType = "application/json"
-        val exampleContentString = """{
-          "petId" : 6,
-          "quantity" : 1,
-          "id" : 0,
-          "shipDate" : "2000-01-23T04:56:07.000+00:00",
-          "complete" : false,
-          "status" : "placed"
-        }"""
+    get<Paths.getOrders> {  _: Paths.getOrders ->
+        val exampleContentType = "*/*"
+        val exampleContentString = """"""""
         
         when(exampleContentType) {
             "application/json" -> call.respond(gson.fromJson(exampleContentString, empty::class.java))
             "application/xml" -> call.respondText(exampleContentString, ContentType.Text.Xml)
             else -> call.respondText(exampleContentString)
-        }
-    }
-
-
-    route("/store/order") {
-        post {
-            val exampleContentType = "application/json"
-            val exampleContentString = """{
-              "petId" : 6,
-              "quantity" : 1,
-              "id" : 0,
-              "shipDate" : "2000-01-23T04:56:07.000+00:00",
-              "complete" : false,
-              "status" : "placed"
-            }"""
-            
-            when(exampleContentType) {
-                "application/json" -> call.respond(gson.fromJson(exampleContentString, empty::class.java))
-                "application/xml" -> call.respondText(exampleContentString, ContentType.Text.Xml)
-                else -> call.respondText(exampleContentString)
-            }
         }
     }
 

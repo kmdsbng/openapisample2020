@@ -15,6 +15,11 @@
 
 import * as runtime from '../runtime';
 
+export interface GetOrdersRequest {
+    orderIds: number;
+    hoge: string;
+}
+
 /**
  * no description
  */
@@ -23,13 +28,21 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Your GET endpoint
      */
-    async getOrdersRaw(): Promise<runtime.ApiResponse<Array<string>>> {
+    async getOrdersRaw(requestParameters: GetOrdersRequest): Promise<runtime.ApiResponse<Array<string>>> {
+        if (requestParameters.orderIds === null || requestParameters.orderIds === undefined) {
+            throw new runtime.RequiredError('orderIds','Required parameter requestParameters.orderIds was null or undefined when calling getOrders.');
+        }
+
+        if (requestParameters.hoge === null || requestParameters.hoge === undefined) {
+            throw new runtime.RequiredError('hoge','Required parameter requestParameters.hoge was null or undefined when calling getOrders.');
+        }
+
         const queryParameters: runtime.HTTPQuery = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/store/orders`,
+            path: `/store/orders/{orderIds}/{hoge}`.replace(`{${"orderIds"}}`, encodeURIComponent(String(requestParameters.orderIds))).replace(`{${"hoge"}}`, encodeURIComponent(String(requestParameters.hoge))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -41,8 +54,8 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Your GET endpoint
      */
-    async getOrders(): Promise<Array<string>> {
-        const response = await this.getOrdersRaw();
+    async getOrders(requestParameters: GetOrdersRequest): Promise<Array<string>> {
+        const response = await this.getOrdersRaw(requestParameters);
         return await response.value();
     }
 

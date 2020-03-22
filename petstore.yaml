@@ -546,7 +546,7 @@ paths:
           schema:
             type: object
             properties: {}
-      operationId: get-store-orders
+      operationId: getOrders
 securityDefinitions: {}
 definitions:
   Order:

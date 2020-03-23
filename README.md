@@ -28,6 +28,17 @@ cd out/kotlin
 (ブラウザでhttp:/localhost:8080/user/loginにアクセス)
 
 
+# Run dredd (API server test)
+
+### start prism for dredd (petstore.yamlだとdreddの検査が通らないので編集したpetstore_simple.yamlを使ってる)
+sh start_prism_dynamic_simple.sh
+
+### install dredd
+npm install -g dredd
+
+### run dredd
+sh start_dredd.sh
+
 
 # 参考
 

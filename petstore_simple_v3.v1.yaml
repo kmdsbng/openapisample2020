@@ -10,7 +10,8 @@ paths:
   '/pet/{petId}':
     get:
       summary: getPet
-      tags: []
+      tags:
+        - pet
       responses:
         '200':
           description: OK
@@ -19,11 +20,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/Pet'
       operationId: get-pet
-      description: ペット1匹の情報を返す2
+      description: |
+        ペット1匹の情報を返す
       parameters: []
     post:
       summary: updatePet
-      tags: []
+      tags:
+        - pet
       responses:
         '200':
           description: OK
@@ -47,6 +50,7 @@ paths:
         in: path
         required: true
         description: ''
+        example: 102
 components:
   schemas:
     Pet:
@@ -74,3 +78,5 @@ components:
       required:
         - name
         - photoUrls
+      x-tags:
+        - pet

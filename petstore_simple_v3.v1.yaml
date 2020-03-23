@@ -1,0 +1,76 @@
+openapi: 3.0.0
+info:
+  title: petstore_simple_v3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+  - url: 'http://localhost:4010'
+    description: ''
+paths:
+  '/pet/{petId}':
+    get:
+      summary: getPet
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'
+      operationId: get-pet
+      description: ペット1匹の情報を返す2
+      parameters: []
+    post:
+      summary: updatePet
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'
+      operationId: post-pet
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+    parameters:
+      - schema:
+          type: integer
+        name: petId
+        in: path
+        required: true
+        description: ''
+components:
+  schemas:
+    Pet:
+      title: Pet
+      type: object
+      properties:
+        id:
+          type: integer
+          example: '99999'
+        name:
+          type: string
+          example: doggie
+        photoUrls:
+          type: array
+          example: "['http://example.com']"
+          items:
+            type: string
+        status:
+          type: string
+          enum:
+            - available
+            - pending
+            - sold
+          example: sold
+      required:
+        - name
+        - photoUrls

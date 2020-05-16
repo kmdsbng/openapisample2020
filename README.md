@@ -128,5 +128,6 @@ https://techbeacon.com/app-dev-testing/tool-your-api-integration-testing-openapi
 
 https://techbeacon.com/app-dev-testing/end-end-vs-contract-based-testing-how-choose
 
-
+What is API testing? | API Testing Using Katalon Studio | Software Certification Training | Edureka
+https://www.youtube.com/watch?v=5qSoeAomkLA
 

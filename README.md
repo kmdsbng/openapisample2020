@@ -124,5 +124,9 @@ https://future-architect.github.io/articles/20191008/
 OpenAPI.Tools
 https://openapi.tools/#sdk
 
+https://techbeacon.com/app-dev-testing/tool-your-api-integration-testing-openapi
+
+https://techbeacon.com/app-dev-testing/end-end-vs-contract-based-testing-how-choose
+
 
 
